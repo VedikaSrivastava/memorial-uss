@@ -1,0 +1,145 @@
+body {
+    font-family: 'Georgia', serif;
+    color: #333333; /* Dark gray text */
+    background-color: #E3DCCB; /* Light beige background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes full height */
+}
+
+header {
+    background-color: #C4B49C; /* Beige */
+    color: #FFFFFF;
+}
+
+header .navbar-brand div {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    color: #000000;
+}
+
+header .navbar {
+    padding: 10px 20px;
+}
+
+header .navbar-nav .nav-item .nav-link {
+    color: #000000;
+    font-weight: bold;
+}
+
+#hero {
+    flex: 1;
+    position: relative;
+    height: auto; 
+    background: #D4CEC1; 
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/home-bg.jpg'); 
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); 
+    z-index: -1; 
+}
+
+#hero .overlay {
+    background: rgba(211, 204, 179, 0.8); /* Transparent beige */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 2s;
+    position: relative;
+    z-index: 1;
+}
+
+#hero img {
+    max-width: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#testimonials .testimonial {
+    background: #F3EEEE; /* Very light gray */
+    color: #333333; /* Dark gray text */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    animation: slideIn 1s;
+}
+
+#work .publication, #work .lecture {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: zoomIn 1s;
+}
+
+#work .publication img, #work .lecture img {
+    max-width: 75%;
+    border-radius: 10px;
+}
+
+#about ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer {
+    background-color: #cfc2b0; /* #C4B49C; */
+    color: #FFFFFF;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+    height: 25px;
+    font-size: 0.8em;
+}
+
+body {
+    padding-bottom: 50px;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+/* Additional Styles for Responsiveness */
+@media (max-width: 768px) {
+    header .navbar-brand div {
+        display: block;
+        text-align: center;
+    }
+
+    #hero {
+        padding: 20px;
+        text-align: center;
+    }
+
+    #hero img {
+        max-width: 100%;
+    }
+}
