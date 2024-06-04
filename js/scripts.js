@@ -28,10 +28,10 @@ testimonials.forEach(testimonial => {
     observer.observe(testimonial);
 });
 
-
-(function() {
-    emailjs.init('soCFT8uxl7SscaylW');
-})();
+// // EmailJS Integration
+// (function() {
+//     emailjs.init('soCFT8uxl7SscaylW');
+// })();
 
 window.onload = function() {
     document.getElementById('contact-form').addEventListener('submit', function(event) {
@@ -52,3 +52,86 @@ window.onload = function() {
             });
     });
 };
+
+
+// Add Firebase configuration and initialize Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyDNckNxwZ0t8TyNMbcRYup2qOoEOjepoQ4",
+    authDomain: "memorial-uss-d78f9.firebaseapp.com",
+    projectId: "memorial-uss-d78f9",
+    storageBucket: "memorial-uss-d78f9.appspot.com",
+    messagingSenderId: "960015456761",
+    appId: "1:960015456761:web:d56977c6ea4f56ae154528",
+    measurementId: "G-QHEPN0X28H"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+
+window.onload = function() {
+    // Fetch and display testimonials on index.html
+    fetchAndDisplayTestimonials();
+
+    // Handle form submission for tributes
+    document.getElementById('tribute-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var relation = document.getElementById('relation').value;
+        var message = document.getElementById('message').value;
+        var statusMessage = document.getElementById('status-message');
+
+        db.collection('tributes').doc(email).set({
+            name: name,
+            relation: relation,
+            message: message
+        })
+        .then(function() {
+            statusMessage.textContent = 'Tribute submitted successfully!';
+            statusMessage.style.color = 'green';
+            document.getElementById('tribute-form').reset();
+        })
+        .catch(function(error) {
+            statusMessage.textContent = 'Error submitting tribute: ' + error.message;
+            statusMessage.style.color = 'red';
+        });
+    });
+
+    // Fetch and display all tributes on tributes.html
+    fetchAndDisplayAllTributes();
+
+    // Refresh testimonials every 30 seconds
+    setInterval(fetchAndDisplayTestimonials, 30000);
+};
+
+function fetchAndDisplayTestimonials() {
+    db.collection('tributes').limit(3).get().then((querySnapshot) => {
+        var testimonialsContainer = document.getElementById('testimonials-container');
+        testimonialsContainer.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+            var data = doc.data();
+            testimonialsContainer.innerHTML += `
+                <div class="testimonial">
+                    <p>"${data.message}"</p>
+                    <h5>- ${data.name} (${data.relation})</h5>
+                </div>
+            `;
+        });
+    });
+}
+
+function fetchAndDisplayAllTributes() {
+    db.collection('tributes').get().then((querySnapshot) => {
+        var tributesContainer = document.getElementById('tributes-container');
+        tributesContainer.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+            var data = doc.data();
+            tributesContainer.innerHTML += `
+                <div class="testimonial">
+                    <p>"${data.message}"</p>
+                    <h5>- ${data.name} (${data.relation})</h5>
+                </div>
+            `;
+        });
+    });
+}

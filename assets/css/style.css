@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Georgia', serif;
     color: #333333; /* Dark gray text */
@@ -11,6 +15,11 @@ body {
 header {
     background-color: #C4B49C; /* Beige */
     color: #FFFFFF;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 header .navbar-brand div {
@@ -31,9 +40,9 @@ header .navbar-nav .nav-item .nav-link {
 }
 
 #hero {
-    flex: 1;
+    flex: 0 0 auto; 
     position: relative;
-    height: auto;
+    height: 75vh;
     background: #D4CEC1;
     background-image: url('../images/home-bg.jpg');
     background-size: cover;
@@ -44,9 +53,10 @@ header .navbar-nav .nav-item .nav-link {
     align-items: center;
     overflow: hidden;
     animation: fadeIn 2s forwards;
-  }
-  
-  #hero::before {
+    margin-top: 70px; /* Ensure hero section stays below header */
+}
+
+#hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -54,11 +64,11 @@ header .navbar-nav .nav-item .nav-link {
     width: 100%;
     height: 100%;
     background: inherit;
-    filter: blur(5px);
+    filter: blur(6px);
     z-index: -1;
-  }
-  
-  #hero .overlay {
+}
+
+#hero .overlay {
     width: 500px; /* Adjust this value for your desired fixed width */
     height: auto;
     background: rgba(211, 204, 179, 0.8);
@@ -71,22 +81,32 @@ header .navbar-nav .nav-item .nav-link {
     left: 50%;
     transform: translate(-50%, -50%); /* Center overlay within hero */
     z-index: 1;
-  }
-  
-  #hero img {
+}
+
+#hero img {
     max-width: 200px;
     border-radius: 10px;
     margin-bottom: 20px;
-  }
+}
 
-#testimonials .testimonial {
+#testimonials-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%; /* Ensure it takes full width */
+    flex-grow: 1; /* Allow testimonials to grow */
+}
+
+#testimonials-container .testimonial {
+    width: 30%;
+    height: auto; /* Ensure the height adjusts based on content */
     background: #F3EEEE; /* Very light gray */
     color: #333333; /* Dark gray text */
     padding: 20px;
-    margin: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     animation: fadeIn 2s;
+    box-sizing: border-box; /* Ensure padding and border are included in the width and height calculations */
 }
 
 #work .publication, #work .lecture {
@@ -115,7 +135,6 @@ footer {
     height: 25px;
     font-size: 0.8em;
 }
-
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -146,5 +165,10 @@ footer {
 
     #hero img {
         max-width: 100%;
+    }
+
+    #testimonials-container .testimonial {
+        width: 100%; /* Make testimonials full width on small screens */
+        margin: 10px 0;
     }
 }

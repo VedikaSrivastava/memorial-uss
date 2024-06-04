@@ -6,6 +6,8 @@
     <title>Home - Dr. Uday Shankar Srivastava</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -52,27 +54,8 @@
 
     <!-- Testimonials -->
     <section id="testimonials" class="mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="testimonial">
-                        <p>"Dr. Srivastava's lectures were always insightful and engaging. He had a profound impact on my academic journey."</p>
-                        <h5>- Student A</h5>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial">
-                        <p>"A mentor and a guide, his teachings went beyond the classroom and shaped our perspectives."</p>
-                        <h5>- Student B</h5>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial">
-                        <p>"His dedication to Hindi literature was unparalleled. He will always be remembered fondly."</p>
-                        <h5>- Colleague C</h5>
-                    </div>
-                </div>
-            </div>
+        <div class="container" id="testimonials-container">
+            <!-- Testimonials will be inserted here by JavaScript -->
         </div>
     </section>
 
@@ -86,5 +69,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="./js/scripts.js"></script>
 </body>
 </html>
