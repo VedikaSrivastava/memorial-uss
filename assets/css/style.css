@@ -5,11 +5,27 @@ html {
 body {
     font-family: 'Georgia', serif;
     color: #333333; /* Dark gray text */
-    background-color: #E3DCCB; /* Light beige background */
+    background-color: #E3DCCB; /* Fallback background color */
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure the body takes full height */
     padding-bottom: 50px;
+    width: 100%;
+    position: relative; /* Ensure relative positioning for the pseudo-element */
+    overflow: hidden; /* Hide any overflow from the blurred background */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/bg.jpg') no-repeat center center fixed; /* Add the background image */
+    background-size: cover; /* Ensure the background covers the entire pseudo-element */
+    filter: blur(6px);
+    z-index: -1;
 }
 
 header {
@@ -125,6 +141,36 @@ header .navbar-nav .nav-item .nav-link {
     padding: 0;
 }
 
+#contact {
+    background-color: #f4f1ea; /* Lighter shade for contrast */
+    padding: 80px 40px;
+    border-top: 2px solid #c4b49c; /* Subtle top border */
+}
+
+#contact-form {
+    background: #ffffff; /* Bright white background */
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Smoother shadow */
+}
+
+#contact-form .form-group input,
+#contact-form .form-group textarea {
+    background-color: #fff; /* Ensuring background remains white */
+    border: 1px solid #ccc; /* Softer border */
+}
+
+#contact-form .btn-primary {
+    background-color: #b39a84; /* Consistent with other buttons */
+    border-color: #a88772; /* Slightly darker border */
+}
+
+#contact-form .btn-primary:hover {
+    background-color: #a88772; /* Darker on hover */
+}
+
+
 footer {
     background-color: #cfc2b0; /* #C4B49C; */
     color: #FFFFFF;
@@ -170,5 +216,14 @@ footer {
     #testimonials-container .testimonial {
         width: 100%; /* Make testimonials full width on small screens */
         margin: 10px 0;
+    }
+
+    #contact-form {
+        padding: 20px;
+    }
+
+    #contact-form .btn-primary {
+        width: 100%; /* Full width button on smaller screens */
+        padding: 15px;
     }
 }
