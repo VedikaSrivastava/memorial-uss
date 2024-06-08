@@ -70,7 +70,7 @@ var db = firebase.firestore();
 
 window.onload = function() {
     // Fetch and display testimonials on index.html
-    fetchAndDisplayTestimonials();
+    // fetchAndDisplayTestimonials();
 
     // Handle form submission for tributes
     document.getElementById('tribute-form').addEventListener('submit', function(event) {
@@ -85,7 +85,8 @@ window.onload = function() {
         db.collection('tributes').doc(email).set({
             name: name,
             relation: relation,
-            message: message
+            message: message,
+            status: "pending"
         })
         .then(function() {
             statusMessage.textContent = 'Tribute submitted successfully!';
@@ -102,28 +103,28 @@ window.onload = function() {
     fetchAndDisplayAllTributes();
 
     // Refresh testimonials every 30 seconds
-    setInterval(fetchAndDisplayTestimonials, 30000);
+    // setInterval(fetchAndDisplayTestimonials, 30000);
 };
 
-function fetchAndDisplayTestimonials() {
-    db.collection('tributes').limit(3).get().then((querySnapshot) => {
-        var testimonialsContainer = document.getElementById('testimonials-container');
-        testimonialsContainer.innerHTML = '';
-        querySnapshot.forEach((doc) => {
-            var data = doc.data();
-            testimonialsContainer.innerHTML += `
-                <div class="testimonial">
-                    <p>"${data.message}"</p>
-                    <h5>- ${data.name} (${data.relation})</h5>
-                </div>
-            `;
-        });
-    });
-}
+// function fetchAndDisplayTestimonials() {
+//     db.collection('tributes').limit(3).get().then((querySnapshot) => {
+//         var testimonialsContainer = document.getElementById('testimonials-container');
+//         testimonialsContainer.innerHTML = '';
+//         querySnapshot.forEach((doc) => {
+//             var data = doc.data();
+//             testimonialsContainer.innerHTML += `
+//                 <div class="testimonial">
+//                     <p>"${data.message}"</p>
+//                     <h5>- ${data.name} (${data.relation})</h5>
+//                 </div>
+//             `;
+//         });
+//     });
+// }
 
 function fetchAndDisplayAllTributes() {
-    db.collection('tributes').get().then((querySnapshot) => {
-        var tributesContainer = document.getElementById('tributes-container');
+    db.collection('tributes').where('status', '==', 'approved').get().then((querySnapshot) => {
+        var tributesContainer = document.getElementById('testimonials-container');
         tributesContainer.innerHTML = '';
         querySnapshot.forEach((doc) => {
             var data = doc.data();
@@ -136,3 +137,7 @@ function fetchAndDisplayAllTributes() {
         });
     });
 }
+
+
+
+

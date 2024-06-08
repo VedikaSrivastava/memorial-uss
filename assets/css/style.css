@@ -66,7 +66,7 @@ header .navbar-nav .nav-item .nav-link {
 #hero {
     flex: 0 0 auto; 
     position: relative;
-    height: 75vh;
+    height: 100vh;
     background: #D4CEC1;
     background-image: url('../images/home-bg.jpg');
     background-size: cover;
@@ -95,7 +95,7 @@ header .navbar-nav .nav-item .nav-link {
 #hero .overlay {
     width: 30%;
     height: auto;
-    background: rgba(211, 204, 179, 0.8);
+    background: rgba(211, 204, 179, 0.9);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -116,9 +116,10 @@ header .navbar-nav .nav-item .nav-link {
 #testimonials-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%; 
-    flex-grow: 1; /* Allow testimonials to grow */
+    justify-content: space-around; 
+    gap: 20px; 
+    width: 100%;
+    padding: 20px; 
 }
 
 #testimonials-container .testimonial {
@@ -149,24 +150,33 @@ header .navbar-nav .nav-item .nav-link {
     padding: 0;
 }
 
-#contact {
-    background-color: #f4f1ea; 
-    padding: 80px 40px;
+#contact,
+#tributes {
+    background-color: rgba(244, 241, 234, 0.8); 
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 4em;
+    padding-top: -2em;
     border-top: 2px solid #c4b49c;
+    width: 45%;
 }
 
 #contact-form .form-group input,
-#contact-form .form-group textarea {
+#contact-form .form-group textarea,
+#tribute-form .form-group input,
+#tribute-form .form-group textarea {
     background-color: #fff; /* Ensuring background remains white */
     border: 1px solid #ccc; /* Softer border */
 }
 
-#contact-form .btn-primary {
+#contact-form .btn-primary,
+#tribute-form .btn-primary {
     background-color: #b39a84; /* Consistent with other buttons */
     border-color: #a88772; /* Slightly darker border */
 }
 
-#contact-form .btn-primary:hover {
+#contact-form .btn-primary:hover,
+#tribute-form .btn-primary:hover {
     background-color: #a88772; /* Darker on hover */
 }
 
@@ -212,6 +222,11 @@ footer {
 
     #hero img {
         max-width: 100%;
+    }
+
+    #testimonials-container {
+        flex-direction: column;
+        align-items: center;
     }
 
     #testimonials-container .testimonial {
