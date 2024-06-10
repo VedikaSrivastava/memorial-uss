@@ -21,6 +21,7 @@
 # Editing/Running code
   - now open VS code, in the top menu go to file -> open folder -> select the folder of the repo (should be named `memorial-uss`)
   - to run code locally, right click on `index.html` and select `Open with Live Server`. This should open a the website in the default browser (e.g. for me in chrome).
+
     ![image](https://github.com/VedikaSrivastava/memorial-uss/assets/83489280/12e7d947-2de3-402c-980b-493b41ca18f8)
 
 
